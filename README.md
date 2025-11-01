@@ -11,6 +11,7 @@ Instead of typing a command and running it just to see what a variable contains,
 ## Features
 
 - **Real-time display**: Shows variable values as you type
+- **Parameter expansion support**: Handles `${VAR:-default}`, `${VAR:+alt}`, `${VAR:=default}`, and more
 - **Security-conscious**: Automatically redacts sensitive variables (keys, tokens, passwords)
 - **Smart filtering**: Only shows variables that are set (unset variables are skipped)
 - **Smart truncation**: Long values are automatically truncated to prevent overflow
@@ -25,10 +26,10 @@ First, you'll need to set up a git repository and push this code. Then choose an
 
 ### Quick Start
 
-Once you have the repository URL (e.g., `https://github.com/yourusername/zsh-env`), the easiest way is to use a plugin manager (see below). For manual installation:
+Once you have the repository URL (e.g., `https://github.com/gregormcc/zsh-env`), the easiest way is to use a plugin manager (see below). For manual installation:
 
 ```bash
-git clone https://github.com/yourusername/zsh-env ~/.zsh/zsh-env
+git clone https://github.com/gregormcc/zsh-env ~/.zsh/zsh-env
 echo "source ~/.zsh/zsh-env/zsh-env.plugin.zsh" >> ~/.zshrc
 ```
 
@@ -39,7 +40,7 @@ Then restart your shell or run `source ~/.zshrc`.
 1. Clone the plugin into your custom plugins directory:
 
 ```bash
-git clone https://github.com/yourusername/zsh-env ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-env
+git clone https://github.com/gregormcc/zsh-env ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-env
 ```
 
 2. Add `zsh-env` to your plugins array in `~/.zshrc`:
@@ -55,14 +56,14 @@ plugins=(git zsh-env ...)
 Add to your `~/.zshrc`:
 
 ```bash
-zinit light yourusername/zsh-env
+zinit light gregormcc/zsh-env
 ```
 
 Or use turbo mode for faster loading:
 
 ```bash
 zinit ice wait lucid
-zinit light yourusername/zsh-env
+zinit light gregormcc/zsh-env
 ```
 
 ### Zgenom
@@ -70,7 +71,7 @@ zinit light yourusername/zsh-env
 Add to your `~/.zshrc`:
 
 ```bash
-zgenom load yourusername/zsh-env
+zgenom load gregormcc/zsh-env
 ```
 
 Then regenerate your init script: `zgenom save`
@@ -80,13 +81,13 @@ Then regenerate your init script: `zgenom save`
 Add to your `~/.zshrc`:
 
 ```bash
-antigen bundle yourusername/zsh-env
+antigen bundle gregormcc/zsh-env
 ```
 
 ### Homebrew (if you publish a tap)
 
 ```bash
-brew install yourusername/zsh-env/zsh-env
+brew install gregormcc/zsh-env/zsh-env
 ```
 
 Or as a cask (if preferred):
@@ -111,6 +112,9 @@ $HOME → /Users/yourname
 
 $ echo $PATH
 $PATH → /opt/homebrew/bin:/opt/homebrew/sbin:/u...
+
+$ echo ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}
+${ZSH_CUSTOM:-~/.oh-my-zsh/custom} → ~/.oh-my-zsh/custom
 
 $ echo $HOME $USER $SHELL $PATH $PWD
 ↑ 2 more above
